@@ -1,5 +1,5 @@
 NAME = sed
-SRC = main.cpp
+SRC = main.cpp FileReplacer.cpp
 F_OBJ = obj/
 OBJ = $(addprefix $(F_OBJ), $(SRC:.cpp=.o))
 DEP = $(addprefix $(F_OBJ), $(SRC:.cpp=.d))
@@ -10,7 +10,7 @@ C_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98 -g -fsanitize=address
 BLACK    =   \033[0;39m
 BLUE     =   \033[34m
 GREEN    =   \033[32m
-RED      =   \033[31m
+RED      =   \033[31mq`
 
 all: dir $(NAME)
 
@@ -22,7 +22,7 @@ dir:
 #compile object files
 $(F_OBJ)%.o: %.cpp Makefile
 	@echo "Compiling $< "
-	@$(CC) $(C_FLAGS) -I ./inc -c $< -o $@
+	@$(CC) $(C_FLAGS) -c $< -o $@
 
 $(NAME):: $(OBJ)
 	@$(CC) $(C_FLAGS) $(^) -o $(NAME)

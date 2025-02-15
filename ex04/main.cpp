@@ -1,6 +1,4 @@
-#include <iostream>
-#include <string>
-#include <fstream>
+#include "FileReplacer.hpp"
 
 int	main(int ac, char **av)
 {
@@ -10,6 +8,18 @@ int	main(int ac, char **av)
 		return (1);
 	}
 
+    FileReplacer replacer(av[1], av[2], av[3]);
+    if (!replacer.replaceAndSave()) {
+        return 1;
+    }
+
+    std::cout << "Replacement successful! New file: " << av[1] << ".replace" << std::endl;
+    return (0);
+}
+
+/* woriking code without considering the delimitation of string
+int	main(int ac, char **av)
+{
 	std::string	sourceFile = av[1];
 	std::string	newFile = sourceFile + ".replace";
 	std::string	line;
@@ -34,7 +44,6 @@ int	main(int ac, char **av)
 	while (std::getline(inputFile, line)){
 		size_t	pos = 0;
 		pos = line.find(s1);
-		
 		while ( pos!= std::string::npos)
 		{
 			modified_line += line.substr(0, pos);
@@ -49,4 +58,4 @@ int	main(int ac, char **av)
 	inputFile.close();
 	outputFile.close();
 	return (0);
-}
+}*/
